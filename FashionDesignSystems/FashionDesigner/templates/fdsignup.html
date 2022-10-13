@@ -1,0 +1,112 @@
+{% load static %}
+<html>
+<head>
+  <title>fashiondesigner form</title>
+	<link rel="stylesheet"  href="{% static 'css/fdsignup.css' %}">
+	<script src="{% static 'js/fdsignup.js' %}"></script>
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+</head>
+<style>
+	body{
+		width: 100%;
+		height: 300px;
+		background-image: url( "{% static 'images/1.jpg' %}");
+	}
+</style>
+<body>
+	<br><br>
+	<center>
+		<p style="font-size:35px ;text-align:center; color:white; background-color: #ff1493;"><b>FASHION DESIGNER REGISTER</b></p>
+</center>
+    <div class="adddetails" >
+
+        <form action="{% url 'fdregister' %}" method="POST" enctype="multipart/form-data">
+        	{% csrf_token %}
+		
+			
+          	<h2 style="font-weight: bold; color: #333">Upload your Personal details</h2>
+
+			<br><label><b>First name</b></label><br><br>
+          	<div class="form-floating mb-3">	
+				<input type="text" class="form-control" id="floatingInput" name="fname" placeholder="firstname">
+				<label for="floatingInput">Enter first name</label>
+		  	</div>
+
+		  	<label><b>Last name</b></label><br><br>
+          	<div class="form-floating mb-3">	
+				<input type="text" class="form-control" id="floatingInput" name="lname" placeholder="lastname">
+				<label for="floatingInput">Enter last name</label>
+		  	</div>
+
+			<div class="form-group">
+				<label>Enter phonenumber:</label>
+				<input class="form-control" type="text" maxlength="10" placeholder="enter phonenumber" name="phoneno" required>
+			  </div>
+
+			  <div class="form-group">
+				<label>Enter email:</label>
+				<input class="form-control" type="email" required  placeholder="enter email" name="email" required>
+			  </div><br>
+
+			  <label><b>Experience:</b></label><br><br>
+			  <select name="experience" class="form-control">
+				<option selected>select your Experience</option>
+			    <option value="less than 2 years">less than 2 years</option>
+			    <option value="2 years">2 years</option>
+			    <option value="4 years">4 years</option>
+			    <option value="more than 4 years">more than 4 years</option>
+			  </select><br>
+			  <label><b>Designation:</b></label><br><br>
+			  <select name="designation" class="form-control">
+				<option selected>select your Designation</option>
+			    <option value="retail manager">retail manager</option>
+			    <option value="textile designer">textile designer</option>
+			    <option value="sketching assistant">sketching assistant</option>
+			    <option value="fashion journalist">fashion journalist</option>
+			  </select><br>
+
+			  <div class="col-auto">
+				<label class="sr-only" for="inlineFormInputGroup">Username</label>
+				<div class="input-group mb-2">
+				  <div class="input-group-prepend">
+					<div class="input-group-text">@</div>
+				  </div>
+				  <input type="text" class="form-control" id="inlineFormInputGroup" name="uname" placeholder="Username">
+				</div>
+			  </div><br>
+
+			  <div class="form-group">
+				<label>Enter Password:</label>
+			  <input
+				type="password"
+				onblur="veripass1()"
+				class="form-control"
+				id="2"
+				placeholder="Password"
+				required="required"
+				name="password"
+			  />
+			  <span id="span2"></span>
+			</div><br>
+
+			<div class="form-group">
+				<label>Confirm Password:</label>
+				<input
+				  type="password"
+				  class="form-control"
+				  onblur="VerifyPass()"
+				  id="3"
+				  placeholder="Confirm Password"
+				  required="required"
+				/>
+				<span id="span3"></span>
+			  </div><br><br>
+			  
+			  <button type="submit" class="btn btn-info">Submit</button>
+
+     	</form>
+  	</div>
+</body>
+</html>

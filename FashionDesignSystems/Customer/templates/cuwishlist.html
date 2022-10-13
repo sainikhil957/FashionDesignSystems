@@ -1,0 +1,148 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<!-- style.css  -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- fontawesome cdn link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+  integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+  crossorigin="anonymous" />
+
+<style>
+        body {font-family: "Times New Roman", Georgia, Serif;}
+        h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+        }
+</style>
+    <title>Cuwishlist</title>
+</head>
+
+<body class="bg" style="background-color: lavender;">
+  <!-- ==============header menu section starts here============== -->
+  <section class="header_menu" id="header_menu">
+        <div class="container-fluid px-0 shadow">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light py-3  ">
+                <a class="navbar-brand pl-5" href="javascript:;">
+                    <img src="{% static 'images/logo.png' %}" class="img img-fluid" width="120px" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mx-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'cuhome' %}">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item ">
+                          <a class="nav-link" href="{% url 'cuorders' %}">orders</a>
+                      </li>
+                      <li class="nav-item active">
+                          <a class="nav-link" href="{% url 'cuwishlist' %}">Wishlist</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'cuform' %}">Form</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cucontactus' %}">ContactUs</a>
+                      </li>
+                  </ul>
+                  
+                  <div class="cart active">
+                      <a href="{% url 'cushoppinglist' %}">
+                          <i class="fas fa-shopping-cart fa-2x"></i>
+                          <span class="badge badge-pill badge-primary">{{count}}</span>
+                      </a>
+                  </div>
+                  <a class="nav-link" href="{% url 'culogout' %}">Logout | {{username}}</a>
+              </div>
+            </nav>
+        </div>
+    </section><br><br>
+        <div >
+ 
+        <center>
+                <p style="font-size:35px; text-align:center; color:black; background-color: deepskyblue; margin-top: 50px;"><h2>YOUR WISH LIST</h2></p>
+        </center>
+        <center>
+            {% if result %}
+                <table class="table table-hover" style="margin-top: 100px; width: 1000px;" >
+                        <thead>
+                                <tr> 
+                                <th scope="col">NAME</th>
+                                <th scope="col">TYPE</th>
+                                <th scope="col">COLOUR</th>
+                                <th scope="col">PATTERN</th>
+                                <th scope="col">SIZE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">VIEW ITEM</th>
+                                <th scope="col">REMOVE ITEM</th>
+                                <th scope="col">ADD TO CART</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in result %}
+                        <tr>
+                                <td >{{i.clothname}}</td>
+                                <td>{{i.clothtype}}</td>
+                                <td>{{i.clothcolour}}</td>
+                                <td>{{i.clothpattern}}</td>
+                                <td>{{i.clothsizes}}</td>
+                                <td>{{i.clothprice}}</td>
+                                <td >
+                                    <a href = '/cuviewitem/{{i.id}}' style="padding-left: 10px; padding-right: 10px; color: black;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href = '/cuwishlistdeleteitem/{{i.id}}' style="padding-left: 10px; padding-right: 10px; ">
+                                        <svg style="color: red;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart-x" viewBox="0 0 16 16">
+                                            <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"/>
+                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href = '/cuwishlisttocart/{{i.id}}' style="padding-left: 10px; padding-right: 10px; ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                          </svg>
+                                    </a>
+                                </td>
+                                </tr>
+                        {% endfor%}
+                        </tbody>
+                        </table>
+            {% else %}
+                    No Results Found!!
+            {% endif %}
+                        
+        </center>
+
+        
+        </div>
+
+        
+        
+</div>
+
+</body>
+</html>

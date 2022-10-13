@@ -1,0 +1,379 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<!-- style.css  -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet"  href="{% static 'css/cuform.css' %}">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- fontawesome cdn link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+  integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+  crossorigin="anonymous" />
+
+<style>
+        body {font-family: "Times New Roman", Georgia, Serif;}
+        h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+        }
+</style>
+    <title>E-Commerce</title>
+</head>
+
+<body id="top">
+  <div class="container-fluid px-0 shadow">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3  ">
+        <a class="navbar-brand pl-5" href="javascript:;">
+            <img src="{% static 'images/logo.png' %}" class="img img-fluid" width="120px" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cuhome' %}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="{% url 'cuorders' %}">orders</a>
+              </li>
+              <li class="nav-item ">
+                  <a class="nav-link" href="{% url 'cuwishlist' %}">Wishlist</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'cuform' %}">Form</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cucontactus' %}">ContactUs</a>
+              </li>
+              
+          </ul>
+          
+          <div class="cart active">
+              <a href="{% url 'cushoppinglist' %}">
+                  <i class="fas fa-shopping-cart fa-2x"></i>
+                  <span class="badge badge-pill badge-primary">{{count}}</span>
+              </a>
+          </div>
+          {% for i in result %}
+          <a class="nav-link" href="{% url 'culogout' %}">Logout | {{i.username}}</a>
+        {% endfor %}
+      </div>
+    </nav>
+</div><br><br>
+
+<div >
+    <div class="p-1 mb-2  text-dark" style="text-align:center; margin-top: 100px;"><h2>DESIGN YOUR DRESS</h2></div>
+    
+  <form action="{% url 'cuformcheck' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table align-middle">
+      <tr>
+        <th style="padding: 20px;" >
+          GENDER
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check" >
+            <input class="form-check-input" type="radio" name="clothgender" value="male" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">MALE</label>	
+          </div>
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothgender" value="female" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">Female</label>	
+          </div>
+        </th>
+      </tr>
+      <tr >
+        <th style="padding-top: 20px;"scope="row" >Pattern</th>
+        <th style="padding: 30px;" >
+			<img type="image" src="{% static 'images/stripped.jpg' %}" alt="Submit" width="100" height="88">
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothpattern" value="stripped" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">Stripped</label>	
+			</div>
+		</th>
+        <th style="padding: 30px;" >
+			<img type="image" src="{% static 'images/checked.jpg' %}" alt="Submit" width="100" height="88">
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothpattern" value="checked" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">Checked</label>	
+			</div>
+		</th>
+        <th style="padding: 30px;" >
+			<img type="image" src="{% static 'images/plaid.jpg' %}" alt="Submit" width="100" height="88">
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothpattern" value="plaid" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">Plaid</label>	
+			</div>
+		</th>
+        <th style="padding: 30px;" >
+			<img type="image" src="{% static 'images/polka.jpg' %}" alt="Submit" width="100" height="88">
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothpattern" value="polka" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">Polka</label>	
+			</div>
+		</th>
+        <th style="padding: 30px;" >
+			<img type="image" src="{% static 'images/flora.jpg' %}" alt="Submit" width="100" height="88">
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothpattern" value="flora" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">Flora</label>	
+			</div>
+		</th>
+        <th style="padding: 30px;" >
+			<img type="image" src="{% static 'images/pais.jpg' %}" alt="Submit" width="100" height="88">
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothpattern" value="pais" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">Pais</label>	
+			</div>
+		</th>
+      </tr> 
+      <tr>
+        <th style="padding: 20px;" >Type</th>
+        <th style="padding: 20px;" >
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothtype" value="vevlet" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">VEVLET</label>	
+			</div>
+		</th>
+        <th style="padding: 20px;" >
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothtype" value="cotton" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">COTTON</label>	
+			</div>
+		</th>
+        <th style="padding: 20px;" >
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothtype" value="silk" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">SILK</label>	
+			</div>
+		</th>
+        <th style="padding: 20px;" >
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothtype" value="georgett" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">GEORGETT</label>	
+			</div>
+		</th>
+        <th style="padding: 20px;" >
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothtype" value="chiffon" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">CHIFFON</label>	
+			</div>
+		</th>
+        <th style="padding: 20px;" >
+			<div class="form-check" style="padding-top: 30px;">
+				<input class="form-check-input" type="radio" name="clothtype" value="damask" id="flexRadioDefault1">
+				<label class="form-check-label" for="flexRadioDefault1">DAMASK</label>	
+			</div>
+		</th>
+      </tr>
+      <tr>
+        <th style="padding-top: 50px;" >COLOUR</th>
+        <th style="padding: 20px;" >
+          <svg height="100" width="100"> 
+            <circle cx="50" cy="50" r="19" stroke="black" stroke-width="3" fill="red" />
+          </svg>
+		  <div class="form-check" style="padding-top: 10px">
+			<input class="form-check-input" type="radio" name="clothcolour" value="red" id="flexRadioDefault1">
+			<label class="form-check-label" for="flexRadioDefault1">Red</label>	
+			</div>
+        </th>
+        <th style="padding: 20px;" >
+          <svg height="100" width="100">
+            <circle cx="50" cy="50" r="19" stroke="black" stroke-width="3" fill="blue" />  
+          </svg>
+		  <div class="form-check" style="padding-top: 10px">
+			<input class="form-check-input" type="radio" name="clothcolour" value="blue" id="flexRadioDefault1">
+			<label class="form-check-label" for="flexRadioDefault1">Blue</label>	
+			</div>
+
+        </th>
+        <th style="padding: 20px;" >
+          <svg height="100" width="100">
+            <circle cx="50" cy="50" r="19" stroke="black" stroke-width="3" fill="yello" />  
+          </svg>
+		  <div class="form-check" style="padding-top: 10px">
+			<input class="form-check-input" type="radio" name="clothcolour" value="black" id="flexRadioDefault1">
+			<label class="form-check-label" for="flexRadioDefault1">Black</label>	
+			</div>
+        </th>
+        <th style="padding: 20px;" >
+          <svg height="100" width="100">
+            <circle cx="50" cy="50" r="19" stroke="black" stroke-width="3" fill="green" />  
+          </svg>
+		  <div class="form-check" style="padding-top: 10px">
+			<input class="form-check-input" type="radio" name="clothcolour" value="green" id="flexRadioDefault1">
+			<label class="form-check-label" for="flexRadioDefault1">Green</label>	
+			</div>
+        </th>
+        <th style="padding: 20px;" >
+          <svg height="100" width="100">
+            <circle cx="50" cy="50" r="19" stroke="black" stroke-width="3" fill="white" />  
+          </svg>
+		  <div class="form-check" style="padding-top: 10px">
+			<input class="form-check-input" type="radio" name="clothcolour" value="white" id="flexRadioDefault1">
+			<label class="form-check-label" for="flexRadioDefault1">White</label>	
+			</div>
+        </th>
+        <th style="padding: 20px;" >
+          <svg height="100" width="100">
+            <circle cx="50" cy="50" r="19" stroke="black" stroke-width="3" fill="orange" />  
+          </svg>
+		  <div class="form-check" style="padding-top: 10px">
+			<input class="form-check-input" type="radio" name="clothcolour" value="yellow" id="flexRadioDefault1">
+			<label class="form-check-label" for="flexRadioDefault1">Yellow</label>	
+			</div>
+        </th>
+      </tr>
+      <tr>
+        <th style="padding: 20px;" >
+          SIZE
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothsizes" value="S" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">S</label>	
+          </div>
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothsizes" value="M" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">M</label>	
+          </div>
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothsizes" value="L" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">L</label>	
+          </div>
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothsizes" value="XL" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">XL</label>	
+          </div>
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothsizes" value="XXL" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">XXL</label>	
+          </div>
+        </th>
+        <th style="padding: 20px;" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="clothsizes" value="XXXL" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">XXXL</label>	
+          </div>
+        </th>
+      </tr> 
+  </table>
+  <br><br>
+  <div class="text-center" style="padding : 50px;">
+    <button type="submit" class="btn btn-primary btn-lg">Search</button>
+  </div>
+
+  </form>
+    
+
+
+    <!-- ==============footer starts here============== -->
+    <section class="footer_section pt-5 pb-2 mt-5" id="footer_section">
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-6 pl-5">
+                        <div class="footer_title">
+                            <img src="assets/images/logo.png" width="150px" class="img img-fluid" alt="logo">
+                        </div>
+                        <div>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, totam est illum ipsum
+                            quas ad
+                            dignissimos magni veritatis natus voluptatem.
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="footer_title pt-3 mb-3">
+                            <h3>Quick Links</h3>
+                        </div>
+                        <div class="footer_links">
+                            <ul>
+                                <li><a href="javascript:;">About</a></li>
+                                <li><a href="javascript:;">Offers & Discounts</a></li>
+                                <li><a href="javascript:;">Get Coupon</a></li>
+                                <li><a href="javascript:;">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="footer_title pt-3 mb-3">
+                            <h3>New Products</h3>
+                        </div>
+                        <div class="footer_links">
+                            <ul>
+                                <li><a href="javascript:;">Woman Cloth</a></li>
+                                <li><a href="javascript:;">Fashion Accessories</a></li>
+                                <li><a href="javascript:;">Man Accessories</a></li>
+                                <li><a href="javascript:;">Rubber made Toys</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="footer_title pt-3 mb-3">
+                            <h3>Support</h3>
+                        </div>
+                        <div class="footer_links">
+                            <ul>
+                                <li><a href="javascript:;">Frequently Asked Questions</a></li>
+                                <li><a href="javascript:;">Terms & Conditions</a></li>
+                                <li><a href="javascript:;">Privacy Policy</a></li>
+                                <li><a href="javascript:;">Report a Payment Issue</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top">
+                <h6 class="text-center mt-3">Copyright ©2020 All rights reserved
+                </h6>
+            </div>
+        </footer>
+    </section>
+    <div class="backtop">
+        <a id="button" href="#top" class="btn btn-lg btn-outline-danger" role="button">
+            <i class="fas fa-chevron-up text-dark"></i>
+        </a>
+    </div>
+    <!-- ==============footer ends here============== -->
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

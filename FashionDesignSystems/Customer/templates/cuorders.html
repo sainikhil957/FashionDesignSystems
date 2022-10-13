@@ -1,0 +1,75 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet"  href="{% static 'css/cushoppinglist.css' %}"> -->
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<style>
+        body {font-family: "Times New Roman", Georgia, Serif;}
+        h1, h2, h3, h4, h5, h6 {
+        font-family: "Playfair Display";
+        letter-spacing: 5px;
+        }
+</style>
+    <title>Orders</title>
+</head>
+
+<body class="bg" style="background-color: lavender;">
+        <div class="w3-top">
+                <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+                  <a href="{% url 'cuhome' %}" class="w3-bar-item w3-button">HOME</a>
+                  <!-- Right-sided navbar links. Hide them on small screens -->
+                  <div class="w3-right w3-hide-small">
+                    <a href="{% url 'cuform' %}" class="w3-bar-item w3-button">Cuform</a>
+                    <a href="{% url 'cushoppinglist' %}" class="w3-bar-item w3-button">ShoppingList</a>
+                    <a href="{% url 'cuwishlist' %}" class="w3-bar-item w3-button">Wishlist</a>
+                  </div>
+                </div>
+        </div><br><br>
+        <div >
+ 
+        <center>
+                <p style="font-size:35px; text-align:center; color:black; background-color: deepskyblue; margin-top: 50px;"><h2>YOUR ORDERS</h2></p>
+        </center>
+        <center>
+                <table class="table table-hover table-dark" style="margin-top: 100px; width: 1000px;" >
+                        <thead>
+                                <tr> 
+                                <th scope="col">NAME</th>
+                                <th scope="col">TYPE</th>
+                                <th scope="col">COLOUR</th>
+                                <th scope="col">PATTERN</th>
+                                <th scope="col">SIZE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">VIEW ITEM</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in result %}
+                        <tr>
+                                <td >{{i.clothname}}</td>
+                                <td>{{i.clothtype}}</td>
+                                <td>{{i.clothcolour}}</td>
+                                <td>{{i.clothpattern}}</td>
+                                <td>{{i.clothsizes}}</td>
+                                <td>{{i.clothprice}}</td>
+                                <td><button type="button" class="btn btn-info btn-sm" onclick="location.href = '/cuviewitem/{{i.id}}'">View item</button></td>
+
+                        </tr>
+                        {% endfor%}
+                        </tbody>
+                        </table>
+        </center>
+        
+
+        <div class="p-1 mb-2 bg-warning text-dark" style="text-align:center; margin-top: 50px; margin-left: 550px; margin-right: 550px;"><h2>TOTAL COST : {{tp}}</h2></div>
+        <br>        
+        
+</div>
+
+</body>
+</html>

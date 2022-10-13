@@ -1,0 +1,14 @@
+form{
+  margin-top: 50px;
+  margin-right: 500px;
+  margin-left: 500px;
+}
+th{
+  height: 50px;
+  width: 50%;
+  }
+
+  p.ex2 {
+    border: 1px solid red; 
+    margin: 20px;
+  }

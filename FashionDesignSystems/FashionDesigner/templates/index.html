@@ -1,0 +1,60 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en"> 
+<head>
+<title>High Fashion</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+<script src="{% static 'js/modernizr.foundation.js' %}"></script>
+<!-- Google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
+<!-- IE Fix for HTML5 Tags -->
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="row page_wrap">
+  <!-- page wrap -->
+  <div class="twelve columns">
+    <!-- page wrap -->
+    <div class="row">
+      <div class="nine columns header_nav">
+        <ul id="menu-header" class="nav-bar horizontal">
+          <li><a href="{% url 'index' %}">Home</a></li>
+  
+          <li ><a href="{% url 'fdpage' %}">Fashion designer</a></li>
+          <li ><a href="{% url 'cupage' %}">Customer</a></li>
+        </ul>
+        <script>$('ul#menu-header').nav-bar();</script>
+      </div>
+      <div class="three columns header_logo"> <img src="{% static 'images/logo.png' %}" alt=""> </div>
+    </div>
+    <!-- END Header -->
+
+    <div class="row">
+      <div class="twelve columns">
+        <div class="heading_dots">
+          <h1 class="heading_supersize"><span class="heading_center_bg">Welcome to Fashion Design!!</span></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="show-for-large-up" style="margin-top:10px ;">
+      <div class="row">
+        <div class="twelve columns" >
+          <div id="featured">
+            <img src="{% static 'images/demo1.jpg' %}" alt=""> <br><br>
+            <img src="{% static 'images/cupage.jpg' %}" alt=""> <br><br>
+            <img src="{% static 'images/home3.jpg' %}" alt=""> <br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
